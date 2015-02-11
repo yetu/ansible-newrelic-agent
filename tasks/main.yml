@@ -1,0 +1,34 @@
+---
+- name: Check for newrelic_license_key
+  fail:
+    msg: "newrelic_license_key has not been defined"
+  when: newrelic_license_key|default(False) == False
+
+- name: main | Debug
+  debug:
+    var=newrelic_jar_url
+
+- name: main | Create newrelic-jar target directory
+  file:
+    path="{{ newrelic_jar_dir }}"
+    state=directory
+    owner="{{ newrelic_jar_user }}"
+    group="{{ newrelic_jar_group }}"
+    mode=0755
+    
+- name: main | Download newrelic.jar
+  get_url:
+    url="{{ newrelic_jar_url }}"
+    dest="{{ newrelic_jar_dir }}"
+    owner="{{ newrelic_jar_user }}"
+    group="{{ newrelic_jar_group }}"
+    mode=0644
+    
+- name: main | Configure new relic
+  template:
+    src=newrelic.yml.j2
+    dest="{{ newrelic_jar_config_file }}"
+    owner="{{ newrelic_jar_user }}"
+    group="{{ newrelic_jar_group }}"
+    mode=0644
+  tags: fritz
