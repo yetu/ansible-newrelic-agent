@@ -39,4 +39,3 @@
     owner="{{ newrelic_jar_user }}"
     group="{{ newrelic_jar_group }}"
     mode=0644
-  tags: fritz
