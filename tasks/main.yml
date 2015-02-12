@@ -24,6 +24,14 @@
     group="{{ newrelic_jar_group }}"
     mode=0644
     
+- name: main | Create version-less symbolic link for newrelic.jar file
+  file:
+    src="{{ newrelic_jar_dir }}/{{ newrelic_jar_filename }}"
+    dest="{{ newrelic_jar_dir }}/newrelic-agent.jar"
+    owner="{{ newrelic_jar_user }}"
+    group="{{ newrelic_jar_group }}"
+    state=link
+    
 - name: main | Configure new relic
   template:
     src=newrelic.yml.j2
