@@ -1,0 +1,44 @@
+---
+
+- include_vars: ../defaults/newrelic_java.yml
+
+- name: Check for newrelic_license_key
+  fail:
+    msg: "newrelic_license_key has not been defined"
+  when: newrelic_license_key|default(False) == False
+
+- name: main | Debug
+  debug:
+    var=newrelic_java_url
+
+- name: main | Create newrelic-jar target directory
+  file:
+    path="{{ newrelic_java_dir }}"
+    state=directory
+    owner="{{ newrelic_java_user }}"
+    group="{{ newrelic_java_group }}"
+    mode=0755
+    
+- name: main | Download newrelic.jar
+  get_url:
+    url="{{ newrelic_java_url }}"
+    dest="{{ newrelic_java_dir }}"
+    owner="{{ newrelic_java_user }}"
+    group="{{ newrelic_java_group }}"
+    mode=0644
+    
+- name: main | Create version-less symbolic link for newrelic.jar file
+  file:
+    src="{{ newrelic_java_dir }}/{{ newrelic_java_filename }}"
+    dest="{{ newrelic_java_dir }}/newrelic-agent.jar"
+    owner="{{ newrelic_java_user }}"
+    group="{{ newrelic_java_group }}"
+    state=link
+    
+- name: main | Configure new relic
+  template:
+    src=newrelic_java.yml.j2
+    dest="{{ newrelic_java_config_file }}"
+    owner="{{ newrelic_java_user }}"
+    group="{{ newrelic_java_group }}"
+    mode=0644

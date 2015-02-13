@@ -1,37 +1,21 @@
 ---
-# defaults file for yetu.newrelic-jvm
+# defaults file for ansible-newrelic-agent
 
 # New relic installation settings
-newrelic_license_key                        : False
-newrelic_jar_version                        : "3.13.0"
-newrelic_jar_app_name                       : "Witwe Bolte"
-newrelic_jar_dir                            : "/tmp/newrelic"
-newrelic_jar_user                           : root
-newrelic_jar_group                          : root
+newrelic_app_name                       : "Witwe Bolte"
+newrelic_license_key                    : False
+newrelic_java_install_agent             : False
+newrelic_nodejs_install_agent           : False
 
 # New relic run configuration
-newrelic_jar_high_security                  : false
-newrelic_jar_enable_auto_app_naming         : false
-newrelic_jar_enable_auto_transaction_naming : true
-newrelic_jar_log_level                      : info
-newrelic_jar_audit_mode                     : false
-newrelic_jar_log_file_count                 : 1
-newrelic_jar_log_limit_in_kbytes            : 0
-newrelic_jar_log_daily                      : false
-newrelic_jar_log_file_name                  : newrelic_agent.log
-newrelic_jar_ssl                            : true
-newrelic_jar_max_stack_trace_lines          : 30
-
-#TODO: Provide these attributes here
-#newrelic_jar_attributes                    :
-#                                             enabled: yes
-#                                             auto_instrument: true
-#newrelic_transaction_tracer_*
-
-newrelic_jar_base_url                       : "http://download.newrelic.com/newrelic/java-agent/newrelic-agent"
-newrelic_jar_filename                       : "newrelic-agent-{{ newrelic_jar_version }}.jar"
-newrelic_jar_url                            : "{{ newrelic_jar_base_url }}/{{ newrelic_jar_version }}/{{ newrelic_jar_filename }}"
-newrelic_jar_config_file                    : "{{ newrelic_jar_dir }}/newrelic.yml"
-
-#TODO: This line is to be removed as soon as we have accomplished the base role
-    #/home/apphome/workspace/home-services/bin/home-services -Dhttp.port=8085 -Dconfig.file=/home/apphome/workspace/home-services/conf/application-dev.conf -J-javaagent:/tmp/newrelic/newrelic-agent-3.13.0.jar -J-Dnewrelic.environment=dev
+newrelic_high_security                  : false
+newrelic_enable_auto_app_naming         : false
+newrelic_enable_auto_transaction_naming : true
+newrelic_log_level                      : info
+newrelic_audit_mode                     : false
+newrelic_log_file_count                 : 1
+newrelic_log_limit_in_kbytes            : 0
+newrelic_log_daily                      : false
+newrelic_log_file_name                  : newrelic_agent.log
+newrelic_ssl                            : true
+newrelic_max_stack_trace_lines          : 30

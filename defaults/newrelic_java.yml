@@ -1,0 +1,14 @@
+---
+# defaults file for ansible-newrelic-agent
+
+# Newrelic java installation settings
+newrelic_java_version                   : "3.13.0"
+newrelic_java_dir                       : "/tmp/newrelic"
+newrelic_java_user                      : root
+newrelic_java_group                     : root
+
+# Dynamic installation properties, don't need to be overwritten
+newrelic_java_base_url                  : "http://download.newrelic.com/newrelic/java-agent/newrelic-agent"
+newrelic_java_filename                  : "newrelic-agent-{{ newrelic_java_version }}.jar"
+newrelic_java_url                       : "{{ newrelic_java_base_url }}/{{ newrelic_java_version }}/{{ newrelic_java_filename }}"
+newrelic_java_config_file               : "{{ newrelic_java_dir }}/newrelic.yml"

@@ -27,12 +27,12 @@ common: &default_settings
   # For example, to report data to "My Application" and "My Application 2" use this:
   # app_name: My Application;My Application 2
   # This setting is required.
-  app_name: {{ newrelic_jar_app_name }}
+  app_name: {{ newrelic_app_name }}
   
   # To enable high security, set this property to true. When in high
   # security mode, the agent will use SSL and obfuscated SQL. Additionally,
   # request parameters and message parameters will not be sent to New Relic.
-  high_security: {{ newrelic_jar_high_security }}
+  high_security: {{ newrelic_high_security }}
 
   # Set to true to enable support for auto app naming.
   # The name of each web app is detected automatically
@@ -40,12 +40,12 @@ common: &default_settings
   # This provides a finer-grained performance breakdown for
   # web apps in New Relic.
   # Default is false.
-  enable_auto_app_naming: {{ newrelic_jar_enable_auto_app_naming }}
+  enable_auto_app_naming: {{ newrelic_enable_auto_app_naming }}
 
   # Set to true to enable component-based transaction naming.
   # Set to false to use the URI of a web request as the name of the transaction.
   # Default is true.
-  enable_auto_transaction_naming: {{ newrelic_jar_enable_auto_transaction_naming }}
+  enable_auto_transaction_naming: {{ newrelic_enable_auto_transaction_naming }}
 
   # The agent uses its own log file to keep its logging
   # separate from that of your application.  Specify the log level here.
@@ -53,29 +53,29 @@ common: &default_settings
   # The levels in increasing order of verboseness are:
   #   off, severe, warning, info, fine, finer, finest
   # Default is info.
-  log_level: {{ newrelic_jar_log_level }}
+  log_level: {{ newrelic_log_level }}
 
   # Log all data sent to and from New Relic in plain text.
   # This setting is dynamic, so changes do not require restarting your application.
   # Default is false.
-  audit_mode: {{ newrelic_jar_audit_mode }}
+  audit_mode: {{ newrelic_audit_mode }}
 
   # The number of backup log files to save.
   # Default is 1.
-  log_file_count: {{ newrelic_jar_log_file_count }}
+  log_file_count: {{ newrelic_log_file_count }}
 
   # The maximum number of kbytes to write to any one log file.
   # The log_file_count must be set greater than 1.
   # Default is 0 (no limit).
-  log_limit_in_kbytes: {{ newrelic_jar_log_limit_in_kbytes }}
+  log_limit_in_kbytes: {{ newrelic_log_limit_in_kbytes }}
 
   # Override other log rolling configuration and roll the logs daily.
   # Default is false.
-  log_daily: {{ newrelic_jar_log_daily }}
+  log_daily: {{ newrelic_log_daily }}
 
   # The name of the log file.
   # Default is newrelic_agent.log.
-  log_file_name: {{ newrelic_jar_log_file_name }}
+  log_file_name: {{ newrelic_log_file_name }}
 
   # The log file directory.
   # Default is the logs directory in the newrelic.jar parent directory.
@@ -88,7 +88,7 @@ common: &default_settings
   # application code, so response times will not be directly affected
   # by this change.
   # Default is true.
-  ssl: {{ newrelic_jar_ssl }}
+  ssl: {{ newrelic_ssl }}
 
   # Proxy settings for connecting to the New Relic server:
   # If a proxy is used, the host setting is required.  Other settings
@@ -102,7 +102,7 @@ common: &default_settings
 
   # Limits the number of lines to capture for each stack trace. 
   # Default is 30
-  max_stack_trace_lines: {{ newrelic_jar_max_stack_trace_lines }}
+  max_stack_trace_lines: {{ newrelic_max_stack_trace_lines }}
 
   # Provides the ability to configure the attributes sent to New Relic. These
   # attributes can be found in transaction traces, traced errors, Insight's 
@@ -262,16 +262,16 @@ common: &default_settings
 
 dev:
   <<: *default_settings
-  app_name: {{ newrelic_jar_app_name }} (Development)
+  app_name: {{ newrelic_app_name }} (Development)
 
 test:
   <<: *default_settings
-  app_name: {{ newrelic_jar_app_name }} (Test)
+  app_name: {{ newrelic_app_name }} (Test)
 
 prod:
   <<: *default_settings
-  app_name: {{ newrelic_jar_app_name }} (Production)
+  app_name: {{ newrelic_app_name }} (Production)
 
 staging:
   <<: *default_settings
-  app_name: {{ newrelic_jar_app_name }} (Staging)
+  app_name: {{ newrelic_app_name }} (Staging)
