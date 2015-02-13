@@ -1,0 +1,5 @@
+---
+# defaults file for ansible-newrelic-agent
+
+# Newrelic java installation settings
+newrelic_nodejs_app_name                   : "{{ newrelic_app_name }} ({{ yetu_env }})"

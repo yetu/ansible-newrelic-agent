@@ -1,0 +1,9 @@
+---
+
+- include_vars: ../defaults/newrelic_nodejs.yml
+
+# TODO: Find a good strategy for providing the newrelic.js configuration
+
+- name: newrelic_java | Debug
+  debug:
+    var=newrelic_nodejs_app_name
