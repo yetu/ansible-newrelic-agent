@@ -8,7 +8,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name : ['{{ newrelic_app_name }}'],
+  app_name : ['{{ newrelic_nodejs_app_name }}'],
   /**
    * Your New Relic license key.
    */

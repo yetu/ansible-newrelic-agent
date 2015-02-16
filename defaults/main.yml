@@ -4,11 +4,25 @@
 # New relic installation settings
 newrelic_app_name                       : "Witwe Bolte"
 newrelic_license_key                    : False
-newrelic_java_install_agent             : False
-newrelic_nodejs_install_agent           : False
 
 # New relic configuration folder
 newrelic_config_dir                     : /tmp/newrelic
+
+# Newrelic java configuration
+newrelic_java_install_agent             : False
+newrelic_java_version                   : "3.13.0"
+newrelic_java_config_dir                : "{{ newrelic_config_dir }}"
+newrelic_java_base_url                  : "http://download.newrelic.com/newrelic/java-agent/newrelic-agent"
+newrelic_java_filename                  : "newrelic-agent-{{ newrelic_java_version }}.jar"
+newrelic_java_url                       : "{{ newrelic_java_base_url }}/{{ newrelic_java_version }}/{{ newrelic_java_filename }}"
+newrelic_java_config_file               : "{{ newrelic_java_config_dir }}/newrelic.yml"
+
+# New relic nodejs configuration
+newrelic_nodejs_install_agent           : False
+newrelic_nodejs_app_name                : "{{ newrelic_app_name }} ({{ yetu_env }})"
+newrelic_nodejs_config_dir              : "{{ newrelic_config_dir }}"
+newrelic_nodejs_config_file             : "{{ newrelic_nodejs_config_dir }}/newrelic.js"
+newrelic_nodejs_envvars_file            : ~/.newrelic-envvars
 
 # New relic run configuration
 newrelic_high_security                  : false

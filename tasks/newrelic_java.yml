@@ -1,7 +1,5 @@
 ---
 
-- include_vars: ../defaults/newrelic_java.yml
-
 - name: newrelic_java | Create newrelic-jar target directory
   file:
     path="{{ newrelic_java_config_dir }}"
