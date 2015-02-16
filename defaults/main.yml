@@ -7,6 +7,9 @@ newrelic_license_key                    : False
 newrelic_java_install_agent             : False
 newrelic_nodejs_install_agent           : False
 
+# New relic configuration folder
+newrelic_config_dir                     : /tmp/newrelic
+
 # New relic run configuration
 newrelic_high_security                  : false
 newrelic_enable_auto_app_naming         : false
