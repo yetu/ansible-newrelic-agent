@@ -1,9 +1,28 @@
 ---
 
-- include_vars: ../defaults/newrelic_nodejs.yml
+- name: newrelic_nodejs | Create directory for configuration file
+  file:
+    path="{{ newrelic_nodejs_config_dir }}"
+    state=directory
+    owner="{{ newrelic_user }}"
+    group="{{ newrelic_group }}"
+    mode=0755
 
-# TODO: Find a good strategy for providing the newrelic.js configuration
-
-- name: newrelic_java | Debug
-  debug:
-    var=newrelic_nodejs_app_name
+- name: newrelic_nodejs | Create newrelic configuration file
+  template:
+    src=newrelic_nodejs.yml.js
+    dest="{{ newrelic_nodejs_config_file }}"
+    owner="{{ newrelic_user }}"
+    group="{{ newrelic_group }}"
+    mode=0644
+    
+- name: newrelic_nodejs | Export environment variable that locates the configuration file
+  lineinfile:
+    dest="{{ newrelic_nodejs_envvars_file }}"
+    regexp="^export NEW_RELIC_HOME="
+    line="export NEW_RELIC_HOME={{ newrelic_nodejs_config_dir }}"
+    state=present
+    owner="{{ newrelic_user }}"
+    group="{{ newrelic_group }}"
+    create=yes
+    mode=0755
